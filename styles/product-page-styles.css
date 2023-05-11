@@ -1,0 +1,130 @@
+html{
+    font-family: Kanit;
+}
+body{
+    margin: 0;
+    background: linear-gradient(90deg, rgba(255,243,227,1) 0%, rgba(2,152,158,1) 100%);
+}
+.container{
+    max-width: 1440px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+.producto-container{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgb(0, 0, 0);
+}
+.producto-imagen-wrap{
+    width: 50%;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+.producto-imagen{
+    width: 80%;
+    border-radius: 10px;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon{
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+.flecha{
+    width: 38px;
+}
+.flecha-inversa{
+    transform: rotate(180deg);
+}
+.carousel, .carousel-inner{
+    height: 100%;
+}
+.carousel-inner{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.imagen-carousel{
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+.producto-info-wrap{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 10px;
+}
+.producto-info-body{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+}
+.producto-descripcion{
+    font-size: 25px;
+}
+.producto-precio{
+    font-size: 50px;
+    font-weight: bold;
+}
+.producto-select{
+    width: 65%;
+    border-radius: 10px;
+    height: 45px;
+    font-family: Kanit;
+}
+canvas{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    pointer-events: none;
+    z-index: -1;
+}
+.alert{
+    margin: auto;
+    width: 40%;
+    text-align: center;
+}
+@font-face {
+    font-family: Kanit;
+    src: url(../assets/Kanit-Medium.ttf);
+}
+
+@media (max-width:700px) {
+    .container{
+        height: auto;
+        padding: 20px 0;
+    }
+    .producto-container{
+        flex-direction: column;
+        padding: 25px 0;
+        gap: 20px;
+    }
+    .producto-imagen-wrap{
+        width: 100%;
+    }
+    .producto-info-wrap{
+        width: 100%;
+        padding: 0 25px;
+    }
+    .producto-descripcion{
+        font-size: 18px;
+    }
+}
