@@ -115,6 +115,7 @@ canvas{
     .producto-container{
         flex-direction: column;
         padding: 25px 0;
+        width: 95%;
         gap: 20px;
     }
     .producto-imagen-wrap{
@@ -126,5 +127,8 @@ canvas{
     }
     .producto-descripcion{
         font-size: 18px;
+    }
+    .producto-select{
+        width: 80%;
     }
 }
