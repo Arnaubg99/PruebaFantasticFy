@@ -32,7 +32,7 @@ async function getProducto(id) {
 }
 async function getProductos() {
   try {
-    let respuesta = await fetch('https://test-fullstack.myshopify.com/admin/api/2023-04/products.json', {  
+    let respuesta = await fetch(process.env.rutaApi, {  
       headers: {
       'X-Shopify-Access-Token': process.env.X_Shopify_Access_Token, 
       "Content-Type": "application/json",
