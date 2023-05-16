@@ -23,7 +23,7 @@ fetch('http://localhost:3000/')
                 }else{
                     return minimo
                 };
-            },0)
+            })
         //CREAR OBJETO CON LOS DATOS NECESARIOS PARA CREAR UNA CARD
         let prod = {
             id: producto.id,
