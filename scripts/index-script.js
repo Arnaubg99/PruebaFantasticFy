@@ -23,7 +23,7 @@ fetch('http://localhost:3000/')
                 }else{
                     return minimo
                 };
-            })
+            },0)
         //CREAR OBJETO CON LOS DATOS NECESARIOS PARA CREAR UNA CARD
         let prod = {
             id: producto.id,
@@ -35,37 +35,6 @@ fetch('http://localhost:3000/')
     })
 })
 .catch(error => {console.error(error)
-    crearElemento('div', ['alert', 'alert-danger'], body, [atributo1={llave: 'role', valor: 'alert'}], error)
+    crearElemento('div', ['alert', 'alert-danger'], body, [atributo1={llave: 'role', valor: 'alert'}], error, false)
 });
 
-//FUNCIONES
-//FUNCION PARA CREAR UN COMPONENTE CARD
-function cardComponente(producto){
-    let card = crearElemento('div', ['card'], container)
-    crearElemento('img', ['card-img'], card, [atributo1={llave: 'src', valor: producto.img}])
-    let cardInfoWrap = crearElemento('div', ['card-info-wrap'], card)
-    crearElemento('h2', ['card-titulo'], cardInfoWrap, undefined, producto.titulo.toUpperCase())
-    crearElemento('p', ['card-precio'], cardInfoWrap, undefined, "Price(from): " + producto.precio.price + " $")
-    crearElemento('a', ['card-enlace'], cardInfoWrap, [atributo1={llave: 'href', valor: "./product-page.html?"+ producto.id}], "more info ->")
-}
-//FUNCION PARA CREAR UN NUEVO ELEMENTO DE HTML, AÑADIR LAS CLASES, ATRIBUTOS Y TEXTO E INTRODUCIRLO EN OTRO ELEMENTO
-function crearElemento(tipo, clases, elementoPadre, atributos, texto){
-    let nuevoElemento = document.createElement(tipo)
-    if(clases){
-        clases.forEach(clase=>{
-            nuevoElemento.classList.add(clase)
-        })
-    }
-    if(atributos){
-       atributos.forEach(atributo => {
-        nuevoElemento.setAttribute(atributo.llave, atributo.valor)
-       })
-    }
-    if(texto){
-        nuevoElemento.innerHTML = texto
-    }
-    if(elementoPadre){
-        elementoPadre.appendChild(nuevoElemento)
-    }
-    return nuevoElemento
-}

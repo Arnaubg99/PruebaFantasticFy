@@ -12,14 +12,14 @@ if(!id){
     .then(respuesta => respuesta.json())
     .then(producto => {
         //CREAR ELEMENTOS PRINCIPALES
-        let productoContainer = crearElemento('div', ['producto-container'], container)
-        let productoImagenWrap =  crearElemento('div', ['producto-imagen-wrap'], productoContainer)
-        let productoInfoWrap = crearElemento('div', ['producto-info-wrap'], productoContainer)
-        let productoTitulo = crearElemento('h1', ['producto-titulo'], productoInfoWrap)
-        let productoInfoBody = crearElemento('div', ['producto-info-body'], productoInfoWrap)
-        let productoDescripcion = crearElemento('p', ['producto-descripcion'], productoInfoBody)
-        let productoPrecio = crearElemento('p', ['producto-precio'], productoInfoBody)
-        let productoSelect = crearElemento('select', ['producto-select'], productoInfoBody)
+        let productoContainer = crearElemento('div', ['producto-container'], container, undefined, undefined, true)
+        let productoImagenWrap =  crearElemento('div', ['producto-imagen-wrap'], productoContainer, undefined, undefined, true)
+        let productoInfoWrap = crearElemento('div', ['producto-info-wrap'], productoContainer, undefined, undefined, true)
+        let productoTitulo = crearElemento('h1', ['producto-titulo'], productoInfoWrap, undefined, undefined, true)
+        let productoInfoBody = crearElemento('div', ['producto-info-body'], productoInfoWrap, undefined, undefined, true)
+        let productoDescripcion = crearElemento('p', ['producto-descripcion'], productoInfoBody, undefined, undefined, true)
+        let productoPrecio = crearElemento('p', ['producto-precio'], productoInfoBody, undefined, undefined, true)
+        let productoSelect = crearElemento('select', ['producto-select'], productoInfoBody, undefined, undefined, true)
 
         //PINTAR DATOS EN EL HTML
         document.title = producto.title
@@ -35,7 +35,7 @@ if(!id){
 
         //AÑADIR TODAS LAS VARIANTES DENTRO DEL SELECT
         producto.options[0].values.forEach(variante => {
-            crearElemento('option', undefined ,productoSelect, [atributo1={llave: 'value', valor: variante}], variante)
+            crearElemento('option', undefined ,productoSelect, [atributo1={llave: 'value', valor: variante}], variante, false)
         });
         
         //LISTAR EN UN ARRAY TODAS LAS IMAGENES DE CAROUSEL
@@ -59,62 +59,11 @@ if(!id){
         })
     })
     .catch(error => {console.error(error)
-        crearElemento('div', ['alert', 'alert-danger'], body, [atributo1={llave: 'role', valor:'alert'}], error)
+        crearElemento('div', ['alert', 'alert-danger'], body, [atributo1={llave: 'role', valor:'alert'}], error, false)
     });
 }
 
-
 //FUNCIONES
-//FUNCION PARA AÑADIR LA IMAGEN SI ES UNA SOLA O CREAR UN CAROUSEL SI SON VARIAS
-function crearImagenes(producto){
-    if(producto.images.length<=1){
-        let imagen = "./assets/error.jpg"
-        if(producto.image){
-            imagen = producto.image.src
-        }
-        let productoImagen = crearElemento('img', ['producto-imagen'], undefined, [atributo1={llave: 'src', valor: imagen}])
-        return productoImagen
-    }else{
-        let productoCarouselImagenes = crearElemento('div', ['carousel', 'slide'], undefined, [atributo1={llave: 'id', valor: 'carousel'}])
-        let carouselInner = crearElemento('div', ['carousel-inner'], productoCarouselImagenes)
-        let claseActiveAplicada = false;
-        producto.images.forEach(imagen=>{
-            let carouselItem = crearElemento('div', ['carousel-item'], carouselInner)
-            if(!claseActiveAplicada){
-                carouselItem.classList.add('active')
-                claseActiveAplicada = true
-            }
-            crearElemento('img', ['d-block', 'imagen-carousel'], carouselItem, [atributo1={llave: 'imagen-id',valor: imagen.id},atributo2={llave:'src', valor: imagen.src} ])
-        })
-        let botonPrevio = crearElemento('button', ['carousel-control-prev'], productoCarouselImagenes, [atributo1={llave: 'type', valor: 'button'}, atributo2={llave: 'data-bs-target', valor: '#carousel'}, atributo3={llave: 'data-bs-slide', valor: 'prev'}])
-        crearElemento('img', ['flecha'], botonPrevio, [atributo1={llave: 'src', valor:"./assets/flecha.png"}, atributo2={llave: 'aria-hidden', valor: 'true'}])
-        let botonSiguiente = crearElemento('button', ['carousel-control-next'], productoCarouselImagenes, [atributo1={llave: 'type', valor: 'button'}, atributo2={llave: 'data-bs-target', valor: '#carousel'}, atributo3={llave: 'data-bs-slide', valor: 'next'}])
-        crearElemento('img', ['flecha', 'flecha-inversa'], botonSiguiente, [atributo1={llave: 'src', valor:"./assets/flecha.png"}, atributo2={llave: 'aria-hidden', valor: 'true'}])
-        return productoCarouselImagenes
-    }
-}
-
-//FUNCION PARA CREAR UN NUEVO ELEMENTO DE HTML, AÑADIR LAS CLASES, ATRIBUTOS Y TEXTO E INTRODUCIRLO EN OTRO ELEMENTO
-function crearElemento(tipo, clases, elementoPadre, atributos, texto){
-    let nuevoElemento = document.createElement(tipo)
-    if(clases){
-        clases.forEach(clase=>{
-            nuevoElemento.classList.add(clase)
-        })
-    }
-    if(atributos){
-       atributos.forEach(atributo => {
-        nuevoElemento.setAttribute(atributo.llave, atributo.valor)
-       })
-    }
-    if(texto){
-        nuevoElemento.innerHTML = texto
-    }
-    if(elementoPadre){
-        elementoPadre.appendChild(nuevoElemento)
-    }
-    return nuevoElemento
-}
 
 //EFECTO NIEVE 
 //CODIGO DE https://editor.p5js.org/Jeff-Aporta/sketches/Rs6Kz3LUG
