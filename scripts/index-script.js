@@ -18,12 +18,12 @@ fetch('http://localhost:3000/')
         }
         //GUARDAR EL PRECIO MAS BAJO
         let precioMin = producto.variants.reduce((minimo, actual) =>{
-                if(Number(actual.price) < Number(minimo.price)){
-                    return actual
-                }else{
-                    return minimo
-                };
-            })
+            if(Number(actual.price) < Number(minimo.price)){
+                return actual
+            }else{
+                return minimo
+            };
+        })
         //CREAR OBJETO CON LOS DATOS NECESARIOS PARA CREAR UNA CARD
         let prod = {
             id: producto.id,
