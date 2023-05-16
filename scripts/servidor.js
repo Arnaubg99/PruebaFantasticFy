@@ -1,10 +1,10 @@
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 require('dotenv').config();
 
 //CREACION Y CONFIGURACION DEL PUERTO DEL SERVIDOR
 const servidor = express();
-servidor.use(cors())
+servidor.use(cors());
 
 servidor.listen(process.env.PORT, () => {
   console.log(`Servidor en http://localhost:${process.env.PORT}`);
@@ -16,15 +16,15 @@ servidor.get('/', async (req, res) => {
 });
 
 servidor.get('/:id', async (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
     res.json(await getProducto(id));
 });
 
 //FUNCIONES
 async function getProducto(id) {
   try {
-    let productos = await getProductos()
-    const ide = Number(id)
+    let productos = await getProductos();
+    const ide = Number(id);
     return productos.products.find((objeto) => objeto.id === ide);
   } catch (error) {
     return error;
