@@ -7,7 +7,7 @@ const servidor = express();
 servidor.use(cors())
 
 servidor.listen(process.env.PORT, () => {
-  console.log(`Servidor en http://localhost:3000`);
+  console.log(`Servidor en http://localhost:${process.env.PORT}`);
 });
 
 //RUTAS
