@@ -56,7 +56,11 @@ if(!id){
                     Number(img.querySelector('.imagen-carousel').getAttribute('imagen-id')) === idImagen);
                 imagenActivaAfter.classList.add('active')
             }
-        })
+        });
+        const botonPrev = document.querySelector('.carousel-control-prev')
+        const botonNext = document.querySelector('.carousel-control-next')
+        botonPrev.addEventListener('click', () => cambioDeVariante('prev', producto, productoSelect, productoPrecio))
+        botonNext.addEventListener('click', () => cambioDeVariante('next', producto, productoSelect, productoPrecio))
     })
     .catch(error => {console.error(error)
         crearElemento('div', ['alert', 'alert-danger'], body, [atributo1={llave: 'role', valor:'alert'}], error, false)

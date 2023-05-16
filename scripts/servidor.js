@@ -21,7 +21,7 @@ servidor.get('/:id', async (req, res) => {
 });
 
 //FUNCIONES
-async function getProducto(id) {
+async function getProducto(id) { 
   try {
     let productos = await getProductos();
     const ide = Number(id);

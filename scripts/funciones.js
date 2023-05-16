@@ -60,3 +60,27 @@ function cardComponente(producto){
     crearElemento('p', ['card-precio'], cardInfoWrap, undefined, "Price(from): " + producto.precio.price + " $", false)
     crearElemento('a', ['card-enlace'], cardInfoWrap, [atributo1={llave: 'href', valor: "./product-page.html?"+ producto.id}], "more info ->", false)
 }
+
+//FUNCION PARA CAMBIAR LOS DATOS DE LA PAGINA DEPENDIENDO DE LA INFORMACION DE LA VARIANTE
+function cambioDeVariante(tipoBoton, producto, productoSelect, productoPrecio){
+    let imagen;
+    if(tipoBoton === 'next'){
+        if(!document.querySelector('.active').nextElementSibling){
+            imagen = document.querySelector('.carousel-inner').firstElementChild;
+        }else{
+            imagen = document.querySelector('.active').nextElementSibling;
+        }
+    }else{
+        if(!document.querySelector('.active').previousElementSibling){
+            imagen = document.querySelector('.carousel-inner').lastElementChild;
+        }else{
+            imagen = document.querySelector('.active').previousElementSibling;
+        }
+    }
+    let imagenId =imagen.querySelector('img').getAttribute('imagen-id');
+    console.log(imagen.querySelector('img').getAttribute('imagen-id'))
+    let variante = producto.variants.find(variante => Number(variante.image_id) === Number(imagenId));
+    productoSelect.value = variante.title
+    productoPrecio.innerHTML = variante.price + " $"
+    console.log(variante)
+}
