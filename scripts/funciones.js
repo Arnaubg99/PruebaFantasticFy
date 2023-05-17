@@ -78,9 +78,7 @@ function cambioDeVariante(tipoBoton, producto, productoSelect, productoPrecio){
         }
     }
     let imagenId =imagen.querySelector('img').getAttribute('imagen-id');
-    console.log(imagen.querySelector('img').getAttribute('imagen-id'))
     let variante = producto.variants.find(variante => Number(variante.image_id) === Number(imagenId));
     productoSelect.value = variante.title
     productoPrecio.innerHTML = variante.price + " $"
-    console.log(variante)
 }
