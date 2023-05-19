@@ -18,4 +18,3 @@ fetch('http://localhost:3000/')
 .catch(error => {console.error(error)
     crearElemento('div', ['alert', 'alert-danger'], body, [atributo1={llave: 'role', valor: 'alert'}], error, false)
 });
-
