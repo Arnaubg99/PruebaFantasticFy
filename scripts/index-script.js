@@ -25,12 +25,8 @@ fetch('http://localhost:3000/')
             };
         })
         //CREAR OBJETO CON LOS DATOS NECESARIOS PARA CREAR UNA CARD
-        let prod = {
-            id: producto.id,
-            titulo : producto.title,
-            img: imagen,
-            precio: precioMin,
-        }
+        let prod = crearProducto(producto.id, producto.title, imagen, precioMin)
+
         cardComponente(prod)
     })
 })

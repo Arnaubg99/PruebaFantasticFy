@@ -47,20 +47,20 @@ if(!id){
             productoPrecio.innerHTML = productoEncontrado.price + " $"
             if(producto.images.length>1){
                 //RETIRAR CLASE ACTIVE A IMAGEN ACTUAL
-                let imagenActivaBefore = arrayImagenes.find(img => 
-                    img.classList.contains('active') === true);
+                let imagenActivaBefore = arrayImagenes.find(img => img.classList.contains('active') === true);
                 imagenActivaBefore.classList.remove('active')
 
                 //AÑADIR CLASE ACTIVE A IMAGEN SELECCIONADA
-                let imagenActivaAfter = arrayImagenes.find(img => 
-                    Number(img.querySelector('.imagen-carousel').getAttribute('imagen-id')) === idImagen);
+                let imagenActivaAfter = arrayImagenes.find(img => Number(img.querySelector('.imagen-carousel').getAttribute('imagen-id')) === idImagen);
                 imagenActivaAfter.classList.add('active')
             }
         });
-        const botonPrev = document.querySelector('.carousel-control-prev')
-        const botonNext = document.querySelector('.carousel-control-next')
-        botonPrev.addEventListener('click', () => cambioDeVariante('prev', producto, productoSelect, productoPrecio))
-        botonNext.addEventListener('click', () => cambioDeVariante('next', producto, productoSelect, productoPrecio))
+        if(document.querySelector('.carousel-control-prev') && document.querySelector('.carousel-control-next')){
+            const botonPrev = document.querySelector('.carousel-control-prev')
+            const botonNext = document.querySelector('.carousel-control-next')
+            botonPrev.addEventListener('click', () => cambioDeVariante('prev', producto, productoSelect, productoPrecio))
+            botonNext.addEventListener('click', () => cambioDeVariante('next', producto, productoSelect, productoPrecio))
+        } 
     })
     .catch(error => {console.error(error)
         crearElemento('div', ['alert', 'alert-danger'], body, [atributo1={llave: 'role', valor:'alert'}], error, false)

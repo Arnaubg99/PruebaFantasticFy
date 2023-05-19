@@ -51,6 +51,16 @@ function crearElemento(tipo, clases, elementoPadre, atributos, texto, returnNece
     }
 }
 
+//FUNCION PARA CREAR UN PRODUCTO
+function crearProducto(id, titulo, imagen, precio){
+    return producto = {
+        id: id,
+        titulo : titulo,
+        img: imagen,
+        precio: precio,
+    }
+}
+
 //FUNCION PARA CREAR UN COMPONENTE CARD
 function cardComponente(producto){
     let card = crearElemento('div', ['card'], container, undefined, undefined, true)
