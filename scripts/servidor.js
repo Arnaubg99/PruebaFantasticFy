@@ -17,15 +17,22 @@ servidor.get('/', async (req, res) => {
 
 servidor.get('/:id', async (req, res) => {
     const id = req.params.id;
-    res.json(await getProducto(id));
+    res.json(await getProductoPorId(id));
 });
 
 //FUNCIONES
-async function getProducto(id) { 
+async function getProductoPorId(id) { 
   try {
-    let productos = await getProductos();
+    const productos = await getProductos();
     const ide = Number(id);
-    return productos.products.find((objeto) => objeto.id === ide);
+    if (isNaN(ide)) {
+      throw new Error('Id no válida');
+    }
+    const producto = productos.products.find((objeto) => objeto.id === ide);
+    if (!producto) {
+      throw new Error('Producto no encontrado');
+    }
+    return producto;
   } catch (error) {
     return error;
   }
@@ -38,6 +45,9 @@ async function getProductos() {
       "Content-Type": "application/json",
       },
     });
+    if (!respuesta.ok) {
+      throw new Error('No se han podido recopilar los productos');
+    }
     return await respuesta.json();
   } catch (error) {
     return error;
