@@ -8,7 +8,6 @@ fetch('http://localhost:3000/')
 .then(datos => {
     //LISTAR EN UN ARRAY TODOS LOS OBJETOS
     const productos = datos.products.slice(0)
-
     //PINTAR DATOS EN EL HTML
     titulo.innerHTML = "Product's list:(" + productos.length +")"
     productos.forEach(producto => {
