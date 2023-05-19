@@ -51,13 +51,25 @@ function crearElemento(tipo, clases, elementoPadre, atributos, texto, returnNece
     }
 }
 
-//FUNCION PARA CREAR UN PRODUCTO
-function crearProducto(id, titulo, imagen, precio){
+//FUNCION PARA DEVOLVER UN PRODUCTO
+function crearProducto(producto){
+    let imagen = "./assets/error.jpg"
+    if(producto.image){
+        imagen = producto.image.src
+    }
+    //GUARDAR EL PRECIO MAS BAJO
+    let precioMin = producto.variants.reduce((minimo, actual) =>{
+        if(Number(actual.price) < Number(minimo.price)){
+            return actual
+        }else{
+            return minimo
+        };
+    })
     return producto = {
-        id: id,
-        titulo : titulo,
+        id: producto.id,
+        titulo : producto.title,
         img: imagen,
-        precio: precio,
+        precio: precioMin,
     }
 }
 

@@ -12,21 +12,7 @@ fetch('http://localhost:3000/')
     //PINTAR DATOS EN EL HTML
     titulo.innerHTML = "Product's list:(" + productos.length +")"
     productos.forEach(producto => {
-        let imagen = "./assets/error.jpg"
-        if(producto.image){
-            imagen = producto.image.src
-        }
-        //GUARDAR EL PRECIO MAS BAJO
-        let precioMin = producto.variants.reduce((minimo, actual) =>{
-            if(Number(actual.price) < Number(minimo.price)){
-                return actual
-            }else{
-                return minimo
-            };
-        })
-        //CREAR OBJETO CON LOS DATOS NECESARIOS PARA CREAR UNA CARD
-        let prod = crearProducto(producto.id, producto.title, imagen, precioMin)
-
+        let prod = crearProducto(producto)
         cardComponente(prod)
     })
 })
